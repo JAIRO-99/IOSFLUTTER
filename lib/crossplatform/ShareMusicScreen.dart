@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert'; // Para manejar JSON
 import 'dart:typed_data'; // Para usar Uint8List
 import 'package:web_socket_channel/io.dart';
- 
+
 class ShareMusicScreen extends StatefulWidget {
   @override
   _ShareMusicScreenState createState() => _ShareMusicScreenState();
@@ -52,7 +52,8 @@ class _ShareMusicScreenState extends State<ShareMusicScreen> {
 
   // Método para obtener el ID del DJ desde el backend
   Future<void> _fetchDjId(String email) async {
-    final url = 'https://rumba-music2.azurewebsites.net/api/users/search/$email';
+    final url =
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/users/search/$email';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -61,7 +62,8 @@ class _ShareMusicScreenState extends State<ShareMusicScreen> {
           _selectedDjId = data['id'];
         });
       } else {
-        throw Exception('No se pudo encontrar el DJ con el correo proporcionado.');
+        throw Exception(
+            'No se pudo encontrar el DJ con el correo proporcionado.');
       }
     } catch (e) {
       print('Error obteniendo el DJ ID: $e');
@@ -71,7 +73,8 @@ class _ShareMusicScreenState extends State<ShareMusicScreen> {
   // Conectar a la sala usando el roomCode (accessCode)
   Future<void> _connectToWebSocket(String roomCode) async {
     _channel = IOWebSocketChannel.connect(
-      Uri.parse('wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
+      Uri.parse(
+          'wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
     );
 
     // Escuchar mensajes del WebSocket
@@ -152,10 +155,12 @@ class _ShareMusicScreenState extends State<ShareMusicScreen> {
       return;
     }
 
-    final result = await _songService.selectAndUploadMusic(_selectedDjId.toString());
+    final result =
+        await _songService.selectAndUploadMusic(_selectedDjId.toString());
 
     setState(() {
-      _selectedSongTitle = result; // Asignamos el título de la canción seleccionada
+      _selectedSongTitle =
+          result; // Asignamos el título de la canción seleccionada
     });
 
     // Actualizamos la lista de canciones
@@ -220,11 +225,11 @@ class _ShareMusicScreenState extends State<ShareMusicScreen> {
   @override
   void dispose() {
     try {
-      _channel?.sink.close(); // Cerrar la conexión WebSocket cuando se destruya la pantalla
+      _channel?.sink
+          .close(); // Cerrar la conexión WebSocket cuando se destruya la pantalla
     } catch (e) {
       print('Error al cerrar el WebSocket: $e');
     }
     super.dispose();
   }
-  
 }

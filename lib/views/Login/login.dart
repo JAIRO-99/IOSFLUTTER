@@ -72,8 +72,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // Obtener el roomCode del usuario y guardarlo en la base de datos
   Future<void> _fetchRoomCodeAndSave(String email) async {
-    final url = Uri.parse('https://rumba-music2.azurewebsites.net/api/rooms/roomcode/$email');
-    
+    final url = Uri.parse(
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/rooms/roomcode/$email');
+
     try {
       final response = await http.get(url);
 
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final String roomCode = data['roomCode'];
 
         print('Room Code obtenido: $roomCode');
-        
+
         // Guardar las credenciales (email, token vacío por ahora, y roomCode)
         await AppDatabase().saveCredentials('', email, roomCode);
       } else {
@@ -212,18 +213,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 child: TextField(
                                   controller: _emailController,
-                                  enabled: !_isLoading, // Deshabilita el TextField si está cargando
+                                  enabled:
+                                      !_isLoading, // Deshabilita el TextField si está cargando
                                   decoration: InputDecoration(
                                     labelText: 'Correo Electrónico',
-                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
                                     filled: true,
-                                    fillColor: const Color.fromARGB(255, 226, 229, 229),
+                                    fillColor: const Color.fromARGB(
+                                        255, 226, 229, 229),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(60),
                                       borderSide: BorderSide.none,
                                     ),
                                     prefixIcon: Icon(Icons.email),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
                                   ),
                                   keyboardType: TextInputType.emailAddress,
                                 ),
@@ -233,12 +238,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 child: TextField(
                                   controller: _passwordController,
-                                  enabled: !_isLoading, // Deshabilita el TextField si está cargando
+                                  enabled:
+                                      !_isLoading, // Deshabilita el TextField si está cargando
                                   decoration: InputDecoration(
                                     labelText: 'Contraseña',
-                                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
                                     filled: true,
-                                    fillColor: const Color.fromARGB(255, 226, 229, 229),
+                                    fillColor: const Color.fromARGB(
+                                        255, 226, 229, 229),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(60),
                                       borderSide: BorderSide.none,
@@ -246,7 +254,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     prefixIcon: Icon(Icons.lock),
                                     suffixIcon: IconButton(
                                       icon: Icon(
-                                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                                        _obscurePassword
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -254,7 +264,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         });
                                       },
                                     ),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
                                   ),
                                   obscureText: _obscurePassword,
                                 ),

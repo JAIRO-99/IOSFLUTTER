@@ -15,45 +15,46 @@ class _CustomViewState extends State<CustomView> {
   int? _djId; // Guardar el ID del DJ después de la búsqueda
   bool _isLoading = false; // Mostrar un indicador de carga
 
-Future<void> _fetchDjId(String roomCode) async {
-  final url = 'https://rumba-music2.azurewebsites.net/api/rooms/owner-by-roomcode/$roomCode';
-  
-  setState(() {
-    _isLoading = true;
-  });
-  
-  try {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      int djId = data['id']; // Guardar el ID del DJ
-      setState(() {
-        _djId = djId;
-      });
+  Future<void> _fetchDjId(String roomCode) async {
+    final url =
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/rooms/owner-by-roomcode/$roomCode';
 
-      // Guardar el ID del DJ y el roomCode en SharedPreferences
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setInt('djId', djId);
-      await prefs.setString('roomCode', roomCode);
-
-      print('Guardado: DJ ID - $djId, Room Code - $roomCode');
-
-      // Navegar a la siguiente pantalla si se obtuvo el DJ ID correctamente
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoadingReceptorView()),
-      );
-    } else {
-      throw Exception('Error al obtener el ID del DJ.');
-    }
-  } catch (e) {
-    print('Error al obtener el DJ ID: $e');
-  } finally {
     setState(() {
-      _isLoading = false;
+      _isLoading = true;
     });
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        int djId = data['id']; // Guardar el ID del DJ
+        setState(() {
+          _djId = djId;
+        });
+
+        // Guardar el ID del DJ y el roomCode en SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('djId', djId);
+        await prefs.setString('roomCode', roomCode);
+
+        print('Guardado: DJ ID - $djId, Room Code - $roomCode');
+
+        // Navegar a la siguiente pantalla si se obtuvo el DJ ID correctamente
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoadingReceptorView()),
+        );
+      } else {
+        throw Exception('Error al obtener el ID del DJ.');
+      }
+    } catch (e) {
+      print('Error al obtener el DJ ID: $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,8 @@ Future<void> _fetchDjId(String roomCode) async {
             top: 0,
             left: 0,
             right: 0,
-            bottom: screenHeight * 0.5, // Ajuste para que el rectángulo ocupe la parte superior
+            bottom: screenHeight *
+                0.5, // Ajuste para que el rectángulo ocupe la parte superior
             child: Container(
               width: screenWidth,
               decoration: BoxDecoration(
@@ -134,7 +136,8 @@ Future<void> _fetchDjId(String roomCode) async {
                     ),
                   ),
                   onChanged: (value) {
-                    _roomCode = value; // Actualizar el código con el valor ingresado
+                    _roomCode =
+                        value; // Actualizar el código con el valor ingresado
                   },
                 ),
               ),
@@ -145,7 +148,8 @@ Future<void> _fetchDjId(String roomCode) async {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -173,7 +177,8 @@ Future<void> _fetchDjId(String roomCode) async {
                           ? null // Deshabilitar el botón si está cargando
                           : () {
                               if (_roomCode.isNotEmpty) {
-                                _fetchDjId(_roomCode); // Llamar al método para obtener el DJ ID
+                                _fetchDjId(
+                                    _roomCode); // Llamar al método para obtener el DJ ID
                               } else {
                                 print('Por favor, ingresa un código.');
                               }

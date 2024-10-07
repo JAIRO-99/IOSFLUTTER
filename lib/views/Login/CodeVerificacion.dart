@@ -36,9 +36,9 @@ class _CodeVerificacionState extends State<CodeVerificacion> {
   }
 
   Future<void> _saveCurrentScreen() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('isInCodeVerification', true);
-}
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isInCodeVerification', true);
+  }
 
   @override
   void dispose() {
@@ -88,8 +88,6 @@ class _CodeVerificacionState extends State<CodeVerificacion> {
       // Realizar la solicitud POST
       final response = await http.post(url).timeout(const Duration(minutes: 5));
 
-      
-
       if (response.statusCode == 200) {
         await apiService
             .registerUser(email); // Registra el usuario como DJ PROBANDO
@@ -111,8 +109,8 @@ class _CodeVerificacionState extends State<CodeVerificacion> {
         );
 
         setState(() {
-        _isLoading = false; // Ocultar indicador de carga
-      });
+          _isLoading = false; // Ocultar indicador de carga
+        });
       } else {
         // Mostrar alerta si el código es incorrecto
         _showAlert('Código incorrecto');

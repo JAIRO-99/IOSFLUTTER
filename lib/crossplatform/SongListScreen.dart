@@ -26,13 +26,14 @@ class _SongListScreenState extends State<SongListScreen> {
 
   // Método para obtener el ID del DJ desde el roomCode
   Future<void> _fetchDjId(String roomCode) async {
-    final url = 'https://rumba-music2.azurewebsites.net/api/rooms/owner-by-roomcode/$roomCode';
+    final url =
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/rooms/owner-by-roomcode/$roomCode';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
-          _djId = data['id'];  // Guardamos el ID del DJ
+          _djId = data['id']; // Guardamos el ID del DJ
         });
       } else {
         throw Exception('Error al obtener el ID del DJ.');
@@ -80,7 +81,8 @@ class _SongListScreenState extends State<SongListScreen> {
     final roomCode = _roomCodeController.text;
     // Conectar usando la URL con roomCode
     _channel = IOWebSocketChannel.connect(
-      Uri.parse('wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
+      Uri.parse(
+          'wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
     );
 
     // Escuchar mensajes del WebSocket
@@ -177,7 +179,8 @@ class _SongListScreenState extends State<SongListScreen> {
   @override
   void dispose() {
     try {
-      _channel?.sink.close(); // Cerrar la conexión WebSocket cuando se destruya la pantalla
+      _channel?.sink
+          .close(); // Cerrar la conexión WebSocket cuando se destruya la pantalla
     } catch (e) {
       print('Error al cerrar el WebSocket: $e');
     }

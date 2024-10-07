@@ -11,7 +11,8 @@ import 'package:path_provider/path_provider.dart';
 class SongService {
   AudioPlayer? _audioPlayer;
   int? _currentlyPlayingId;
-  String baseUrl = 'https://rumba-music2.azurewebsites.net/';
+  String baseUrl =
+      'https://backend-crossplatoform-railway-production.up.railway.app/';
 
   Future<List<Song>> fetchSongs(String roomCode, String userId) async {
     final response = await http.get(

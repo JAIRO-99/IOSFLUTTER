@@ -86,7 +86,7 @@ class _RoomDjViewState extends State<RoomDjView> {
   // Obtener el ID del DJ desde el backend
   Future<void> _fetchDjId(String email) async {
     final url =
-        'https://rumba-music2.azurewebsites.net/api/users/search/$email';
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/users/search/$email';
     try {
       final response = await http.get(Uri.parse(url), headers: {
         'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ class _RoomDjViewState extends State<RoomDjView> {
   // Descargar las canciones con un tiempo de espera de 3 minutos
   Future<void> _fetchSongs(String roomCode, int djId) async {
     final url =
-        'https://rumba-music5.azurewebsites.net/api/rooms/validate-and-filter/$roomCode/$djId';
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/rooms/validate-and-filter/$roomCode/$djId';
 
     try {
       // Agregar un tiempo de espera de 3 minutos (180 segundos)
@@ -173,7 +173,8 @@ class _RoomDjViewState extends State<RoomDjView> {
   // Conectar al WebSocket
   Future<void> _connectToWebSocket(String roomCode) async {
     _channel = IOWebSocketChannel.connect(
-      Uri.parse('wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
+      Uri.parse(
+          'wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
     );
 
     // Escuchar mensajes del WebSocket

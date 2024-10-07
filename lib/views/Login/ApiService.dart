@@ -2,7 +2,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  final String baseUrl = 'https://rumba-music2.azurewebsites.net';
+  final String baseUrl =
+      'https://backend-crossplatoform-railway-production.up.railway.app';
 
   /// Registra un usuario como DJ
   Future<void> registerUser(String name) async {
