@@ -1,4 +1,4 @@
-import 'package:app_worbun_1k/views/Login/recuperationPassword.dart';
+import 'package:Rumba/views/Login/recuperationPassword.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

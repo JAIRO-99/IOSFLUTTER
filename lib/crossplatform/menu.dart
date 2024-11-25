@@ -1,5 +1,5 @@
-import 'package:app_worbun_1k/crossplatform/ShareMusicScreen.dart';
-import 'package:app_worbun_1k/crossplatform/SongListScreen.dart';
+import 'package:Rumba/crossplatform/ShareMusicScreen.dart';
+import 'package:Rumba/crossplatform/SongListScreen.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -39,7 +39,9 @@ class Menu extends StatelessWidget {
                   // Navegar a la vista para compartir música (Aún no implementada)
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ShareMusicScreen()), // Aquí iría la pantalla para compartir música
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ShareMusicScreen()), // Aquí iría la pantalla para compartir música
                   );
                 },
                 child: Text('Quiero Compartir Música'),
@@ -54,5 +56,3 @@ class Menu extends StatelessWidget {
     );
   }
 }
-
-

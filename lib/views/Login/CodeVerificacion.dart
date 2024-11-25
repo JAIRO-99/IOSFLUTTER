@@ -1,7 +1,7 @@
-import 'package:app_worbun_1k/crossplatform/AppDatabase.dart';
-import 'package:app_worbun_1k/views/Login/ApiService.dart';
-import 'package:app_worbun_1k/views/Login/CodePromotional/PromoCodeScreen.dart';
-import 'package:app_worbun_1k/views/Login/login.dart';
+import 'package:Rumba/crossplatform/AppDatabase.dart';
+import 'package:Rumba/views/Login/ApiService.dart';
+import 'package:Rumba/views/Login/CodePromotional/PromoCodeScreen.dart';
+import 'package:Rumba/views/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';

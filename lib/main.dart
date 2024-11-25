@@ -1,7 +1,7 @@
-import 'package:app_worbun_1k/crossplatform/AppDatabase.dart';
-import 'package:app_worbun_1k/views/Home/principalView.dart';
-import 'package:app_worbun_1k/views/Home/tabBar.dart';
-import 'package:app_worbun_1k/views/Login/registerPassword.dart';
+import 'package:Rumba/crossplatform/AppDatabase.dart';
+import 'package:Rumba/views/Home/principalView.dart';
+import 'package:Rumba/views/Home/tabBar.dart';
+import 'package:Rumba/views/Login/registerPassword.dart';
 import 'package:flutter/material.dart';
 import 'views/Login/login.dart';
 import 'views/Login/register.dart';

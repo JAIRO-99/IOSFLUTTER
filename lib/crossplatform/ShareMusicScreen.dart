@@ -1,6 +1,6 @@
-import 'package:app_worbun_1k/crossplatform/AppDatabase.dart';
-import 'package:app_worbun_1k/crossplatform/Song.dart';
-import 'package:app_worbun_1k/crossplatform/SongService.dart';
+import 'package:Rumba/crossplatform/AppDatabase.dart';
+import 'package:Rumba/crossplatform/Song.dart';
+import 'package:Rumba/crossplatform/SongService.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert'; // Para manejar JSON

@@ -1,9 +1,8 @@
-import 'package:app_worbun_1k/views/Home/principalView.dart';
-import 'package:app_worbun_1k/views/Home/purchase/purchaseView.dart';
+import 'package:Rumba/views/Home/principalView.dart';
+//import 'package:app_worbun_1k/views/Home/purchase/purchaseView.dart';
 import 'package:flutter/material.dart';
 
 class TabBarApp extends StatefulWidget {
-
   final String email; // Parámetro que recibirá el correo electrónico
 
   TabBarApp({required this.email}); //
@@ -14,12 +13,13 @@ class TabBarApp extends StatefulWidget {
 class _TabBarAppState extends State<TabBarApp> {
   int _selectedIndex = 0;
 
-List<Widget> _widgetOptions() {
+  List<Widget> _widgetOptions() {
     return <Widget>[
       RumberoScreen(), // Pasando el email a RumberoScreen
-      PurchaseView(),
+      // PurchaseView(),
     ];
   }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -39,8 +39,8 @@ List<Widget> _widgetOptions() {
           // TabBar flotante
           Positioned(
             bottom: 10.0, // Espacio para flotante
-            left: 35.0, // Margen lateral izquierdo
-            right: 35.0, // Margen lateral derecho
+            left: 40.0, // Margen lateral izquierdo
+            right: 40.0, // Margen lateral derecho
             child: SafeArea(
               child: Container(
                 padding:
@@ -55,7 +55,7 @@ List<Widget> _widgetOptions() {
                   children: [
                     _buildTabBarItem("assets/signalMusic.png", "Inicio", 0),
                     //     _buildTabBarItem("assets/libraryMusic.png", "Mi música", 1),
-                    _buildTabBarItem("assets/whiteR.png", "Pro", 1),
+                    //_buildTabBarItem("assets/whiteR.png", "Pro", 1),
                   ],
                 ),
               ),

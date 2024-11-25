@@ -1,4 +1,4 @@
-import 'package:app_worbun_1k/views/control/roomReceptorView.dart';
+import 'package:Rumba/views/control/roomReceptorView.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

@@ -1,4 +1,4 @@
-import 'package:app_worbun_1k/views/Home/tabBar.dart';
+import 'package:Rumba/views/Home/tabBar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -50,7 +50,8 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
         // Redirige a la pantalla principal de la app
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => TabBarApp(email: widget.email)),
+          MaterialPageRoute(
+              builder: (context) => TabBarApp(email: widget.email)),
         );
       } else {
         print('Error al aplicar el código promocional.');

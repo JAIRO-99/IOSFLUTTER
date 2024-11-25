@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:app_worbun_1k/crossplatform/AppDatabase.dart';
-import 'package:app_worbun_1k/views/Home/djViews/loadingDjView.dart';
+import 'package:Rumba/crossplatform/AppDatabase.dart';
+import 'package:Rumba/views/Home/djViews/loadingDjView.dart';
 import 'package:flutter/material.dart';
-import 'package:app_worbun_1k/crossplatform/Song.dart';
-import 'package:app_worbun_1k/crossplatform/SongService.dart';
+import 'package:Rumba/crossplatform/Song.dart';
+import 'package:Rumba/crossplatform/SongService.dart';
 import 'package:ntp/ntp.dart';
 import 'dart:convert'; // Para manejar JSON
 import 'dart:typed_data'; // Para usar Uint8List

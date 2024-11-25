@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 class PurchaseView extends StatefulWidget {
@@ -270,3 +271,4 @@ enum Plan {
     }
   }
 }
+*/

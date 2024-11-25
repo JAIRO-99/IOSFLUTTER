@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:ntp/ntp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:app_worbun_1k/crossplatform/SongService.dart'; // Asegúrate de importar SongService
-import 'package:app_worbun_1k/crossplatform/Song.dart';
+import 'package:Rumba/crossplatform/SongService.dart'; // Asegúrate de importar SongService
+import 'package:Rumba/crossplatform/Song.dart';
 
 class RoomReceptorView extends StatefulWidget {
   @override
@@ -108,7 +108,7 @@ class _RoomReceptorViewState extends State<RoomReceptorView> {
   // Descargar las canciones usando el roomCode y djId con un tiempo de espera de 3 minutos
   Future<void> _fetchSongs(String roomCode, int djId) async {
     final url =
-        'https://rumba-music3.azurewebsites.net/api/rooms/validate-and-filter/$roomCode/$djId';
+        'https://backend-crossplatoform-railway-production.up.railway.app/api/rooms/validate-and-filter/$roomCode/$djId';
 
     try {
       // Agregar un tiempo de espera de 3 minutos (180 segundos)
@@ -132,7 +132,8 @@ class _RoomReceptorViewState extends State<RoomReceptorView> {
   // Conectar al WebSocket usando el roomCode
   void _connectToWebSocket(String roomCode) {
     _channel = IOWebSocketChannel.connect(
-      Uri.parse('wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
+      Uri.parse(
+          'wss://backend-crossplatoform-railway-production.up.railway.app/ws?roomCode=$roomCode'),
     );
 
     // Escuchar mensajes del WebSocket

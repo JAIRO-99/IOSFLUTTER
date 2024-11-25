@@ -1,7 +1,7 @@
-name: app_worbun_1k
-description: "A new Flutter project."
+name: Rumba
+description: "Una nueva forma de conectar"
 publish_to: 'none'
-version: 0.1.0
+version: 0.1.3
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
@@ -19,6 +19,7 @@ dependencies:
   sqflite: ^2.3.3+1
   shared_preferences: ^2.3.2
   flutter_launcher_icons: ^0.13.1
+  url_launcher: ^6.3.1
 
 flutter_launcher_icons: 
   android: true

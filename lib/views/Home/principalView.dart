@@ -1,174 +1,21 @@
-import 'package:app_worbun_1k/crossplatform/AppDatabase.dart';
-import 'package:app_worbun_1k/views/Home/djViews/controlMusicView.dart';
-import 'package:app_worbun_1k/views/Home/djViews/receptorView/receptorView.dart';
-import 'package:app_worbun_1k/views/Login/ApiService.dart';
-import 'package:app_worbun_1k/views/Login/login.dart';
+import 'package:Rumba/crossplatform/AppDatabase.dart';
+import 'package:Rumba/views/Home/djViews/controlMusicView.dart';
+import 'package:Rumba/views/Home/djViews/receptorView/receptorView.dart';
+import 'package:Rumba/views/Login/ApiService.dart';
+import 'package:Rumba/views/Login/login.dart';
+import 'package:Rumba/views/details_views/configuration_view.dart';
 import 'package:flutter/material.dart';
-
-// class RumberoScreen extends StatefulWidget {
-//   final String email; // Parámetro que recibirá el correo electrónico
-
-//   RumberoScreen({required this.email}); // Constructor
-
-//   @override
-//   _RumberoScreenState createState() => _RumberoScreenState();
-// }
-
-// class _RumberoScreenState extends State<RumberoScreen> {
-//   String? _token;
-//   String? _email;
-//   String? _accessCode;
-//   ApiService apiService = ApiService();
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _loadCredentials();
-//   }
-
-// Future<void> _loadCredentials() async {
-//   // Obtener las credenciales desde la base de datos
-//   final credentials = await AppDatabase().getCredentials();
-
-//   print("El email es: ${widget.email}");
-
-//   if (credentials == null) {
-
-
-//     // Si no existen credenciales, registrar el usuario y crear una sala
-//     print("Credenciales no existen, creando...");
-//     await _createAndSaveRoomCode();
-//   } else {
-//         // Verificar si 'accessCode' existe
-//     if (credentials["accessCode"] != null) {
-//       print("El accessCode es: ${credentials["accessCode"]}");
-//     } else {
-//       // Si 'accessCode' no existe, registrar el usuario y crear una sala
-//       print("AccessCode no existe, creando...");
-//       await _createAndSaveRoomCode();
-//     }
-//   }
-// }
-
-// // Función para registrar el usuario y crear una sala para el DJ
-// Future<void> _createAndSaveRoomCode() async {
-//   // Registrar el usuario con el email
-//   await apiService.registerUser(widget.email);
-  
-//   // Obtener el ID del DJ a partir del email
-//   int? djId = await apiService.getDjIdByEmail(widget.email);
-  
-//   if (djId != null) {
-//     // Crear una sala para el DJ y obtener el roomCode
-//     int? roomCode = await apiService.createRoomForDj(djId);
-
-//     if (roomCode != null) {
-//       // Guardar las credenciales en la base de datos
-//       await AppDatabase().saveCredentials('', widget.email, roomCode.toString());
-//       print("Se ha creado la sala con el roomCode: $roomCode");
-//     } else {
-//       print("Error al crear la sala para el DJ");
-//     }
-//   } else {
-//     print("Error al obtener el DJ ID");
-//   }
-// }
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // Obtenemos el tamaño de la pantalla
-//     final screenHeight = MediaQuery.of(context).size.height;
-//     final screenWidth = MediaQuery.of(context).size.width;
-
-//     return Scaffold(
-//       backgroundColor: Colors.black,
-//       appBar: AppBar(
-//         backgroundColor: Colors.black,
-//         title: Row(
-//           mainAxisAlignment: MainAxisAlignment.end,
-//           children: [
-//             Icon(
-//               Icons.confirmation_num,
-//               color: Colors.white,
-//               size: 30,
-//             ),
-//             SizedBox(width: 10),
-//           ],
-//         ),
-//         automaticallyImplyLeading: false,
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 40.0),
-//         child: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(height: screenHeight * 0.02),
-
-//               // Subtítulo
-//               Text(
-//                 "¿Qué tipo de rumbero eres?",
-//                 style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: screenWidth * 0.08, // Tamaño relativo
-//                   fontWeight: FontWeight.w900,
-//                 ),
-//               ),
-//               SizedBox(height: screenHeight * 0.01),
-
-//               // Texto más abajo
-//               Text(
-//                 "Escoge tu modo",
-//                 style: TextStyle(
-//                   color: Colors.white70,
-//                   fontSize: screenWidth * 0.06, // Tamaño relativo
-//                 ),
-//               ),
-//               SizedBox(height: screenHeight * 0.03),
-
-//               // Primer rectángulo
-//               RumberoOption(
-//                 imagePath: 'assets/djLogo.png',
-//                 label: 'Controla la música',
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => Controlmusicview(),
-//                     ),
-//                   );
-//                 },
-//               ),
-//               SizedBox(height: screenHeight * 0.03), // Espacio relativo
-
-//               RumberoOption2(
-//                 imagePath: 'assets/hearMusic.png',
-//                 label: 'Escucha la música',
-//                 onPressed: () {
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => CustomView(),
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class RumberoScreen extends StatelessWidget {
   // Método para manejar el logout
   Future<void> _logout(BuildContext context) async {
-    await AppDatabase().deleteAndRecreateDatabase(); // Eliminar las credenciales
+    await AppDatabase()
+        .deleteAndRecreateDatabase(); // Eliminar las credenciales
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()), // Redirigir a la pantalla de login
+      MaterialPageRoute(
+          builder: (context) =>
+              LoginScreen()), // Redirigir a la pantalla de login
       (Route<dynamic> route) => false, // Remover todas las rutas anteriores
     );
   }
@@ -184,17 +31,30 @@ class RumberoScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () => _logout(context), // Llamar al método de logout al presionar el icono
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ConfiguracionView()),
+                );
+              },
+              child: Icon(
+                Icons.settings,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+            GestureDetector(
+              onTap: () => _logout(
+                  context), // Llamar al método de logout al presionar el icono
               child: Icon(
                 Icons.logout,
                 color: Colors.white,
                 size: 30,
               ),
             ),
-            SizedBox(width: 10),
           ],
         ),
         automaticallyImplyLeading: false,

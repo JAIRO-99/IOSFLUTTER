@@ -1,4 +1,4 @@
-import 'package:app_worbun_1k/views/Home/djViews/receptorView/loadingReceptorView.dart';
+import 'package:Rumba/views/Home/djViews/receptorView/loadingReceptorView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;

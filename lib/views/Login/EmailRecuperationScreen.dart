@@ -1,4 +1,4 @@
-import 'package:app_worbun_1k/views/Login/CodeVerificacion2.dart';
+import 'package:Rumba/views/Login/CodeVerificacion2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

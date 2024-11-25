@@ -1,8 +1,7 @@
-import 'package:app_worbun_1k/views/Home/djViews/controlMusicView.dart';
-import 'package:app_worbun_1k/views/control/RoomDjView.dart';
+import 'package:Rumba/views/Home/djViews/controlMusicView.dart';
+import 'package:Rumba/views/control/RoomDjView.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 
 class LoadingDjView extends StatefulWidget {
   final int waitTime = 4; // Tiempo de espera
